@@ -1,4 +1,4 @@
-<h2>System Status Checks</h2>
+<h2>Проверки состояния системы</h2>
 
 <style>
 #system-checks .heading td {
@@ -40,7 +40,7 @@
 	<div class="col-md-push-9 col-md-3">
 
 <div id="system-reboot-required" style="display: none; margin-bottom: 1em;">
-	<button type="button" class="btn btn-danger" onclick="confirm_reboot(); return false;">Reboot Box</button>
+	<button type="button" class="btn btn-danger" onclick="confirm_reboot(); return false;">Перезагрузить сервер</button>
 	<div>No reboot is necessary.</div>
 </div>
 
@@ -167,7 +167,7 @@ function enable_privacy(status) {
 function confirm_reboot() {
   show_modal_confirm(
     "Reboot",
-    $("<p>This will reboot your Mail-in-a-Box <code>{{hostname}}</code>.</p> <p>Until the machine is fully restarted, your users will not be able to send and receive email, and you will not be able to connect to this control panel or with SSH. The reboot cannot be cancelled.</p>"),
+    $("<p>Это перезагрузит ваш сервер Mail-in-a-Box <code>{{hostname}}</code>.</p> <p>Пока сервер полностью не перезапустится, пользователи не смогут отправлять и получать почту, а вы не сможете подключиться к панели управления или по SSH. Перезагрузку нельзя отменить.</p>"),
     "Reboot Now",
     function() {
       api(
@@ -175,8 +175,8 @@ function confirm_reboot() {
         "POST",
         { },
         function(r) {
-          var msg = "<p>Please reload this page after a minute or so.</p>";
-          if (r) msg = "<p>The reboot command said:</p> <pre>" + $("<pre/>").text(r).html() + "</pre>"; // successful reboots don't produce any output; the output must be HTML-escaped
+          var msg = "<p>Перезагрузите эту страницу примерно через минуту.</p>";
+          if (r) msg = "<p>Команда перезагрузки вернула:</p> <pre>" + $("<pre/>").text(r).html() + "</pre>"; // successful reboots don't produce any output; the output must be HTML-escaped
           show_modal_error("Reboot", msg);
         });
     });
