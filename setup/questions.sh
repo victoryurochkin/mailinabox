@@ -44,7 +44,7 @@ box later (including email addresses on other domain names
 or subdomains you control).
 \n\nWe've guessed an email address. Backspace it and type in what
 you really want.
-\n\nEmail Address:" \
+\n\nEmail-адрес:" \
 			"me@$DEFAULT_DOMAIN_GUESS" \
 			EMAIL_ADDR
 
@@ -109,7 +109,7 @@ if [ -z "${PUBLIC_IP:-}" ]; then
 	if [ -z "${PUBLIC_IP:-}" ]; then
 		input_box "Публичный IPv4-адрес" \
 			"Введите публичный IPv4-адрес этого сервера, выданный вашим провайдером.
-			\n\nPublic IP address:" \
+			\n\nПубличный IPv4-адрес:" \
 			"${DEFAULT_PUBLIC_IP:-}" \
 			PUBLIC_IP
 
@@ -141,7 +141,7 @@ if [ -z "${PUBLIC_IPV6:-}" ]; then
 		input_box "IPv6-адрес (необязательно)" \
 			"Введите публичный IPv6-адрес этого сервера, выданный вашим провайдером.
 			\n\nОставьте поле пустым, если у сервера нет IPv6-адреса.
-			\n\nPublic IPv6 address:" \
+			\n\nПубличный IPv6-адрес:" \
 			"${DEFAULT_PUBLIC_IPV6:-}" \
 			PUBLIC_IPV6
 
