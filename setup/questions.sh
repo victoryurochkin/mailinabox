@@ -19,10 +19,10 @@ if [ -z "${NONINTERACTIVE:-}" ]; then
 	hide_output pip3 install "email_validator>=1.0.0" || exit 1
 
 	message_box "Установка Mail-in-a-Box" \
-		"Hello and thanks for deploying a Mail-in-a-Box!
+		"Здравствуйте! Спасибо, что разворачиваете Mail-in-a-Box!
 		\n\nI'm going to ask you a few questions.
 		\n\nTo change your answers later, just run 'sudo mailinabox' from the command line.
-		\n\nNOTE: You should only install this on a brand new Ubuntu installation 100% dedicated to Mail-in-a-Box. Mail-in-a-Box will, for example, remove apache2."
+		\n\nВАЖНО: устанавливайте Mail-in-a-Box только на чистый сервер Ubuntu, полностью выделенный под этот сервис. Например, Mail-in-a-Box удалит apache2."
 fi
 
 # The box needs a name.
@@ -108,7 +108,7 @@ if [ -z "${PUBLIC_IP:-}" ]; then
 
 	if [ -z "${PUBLIC_IP:-}" ]; then
 		input_box "Публичный IPv4-адрес" \
-			"Enter the public IP address of this machine, as given to you by your ISP.
+			"Введите публичный IPv4-адрес этого сервера, выданный вашим провайдером.
 			\n\nPublic IP address:" \
 			"${DEFAULT_PUBLIC_IP:-}" \
 			PUBLIC_IP
@@ -139,8 +139,8 @@ if [ -z "${PUBLIC_IPV6:-}" ]; then
 
 	if [[ -z "${PUBLIC_IPV6:-}" && $MATCHED == 0 ]]; then
 		input_box "IPv6-адрес (необязательно)" \
-			"Enter the public IPv6 address of this machine, as given to you by your ISP.
-			\n\nLeave blank if the machine does not have an IPv6 address.
+			"Введите публичный IPv6-адрес этого сервера, выданный вашим провайдером.
+			\n\nОставьте поле пустым, если у сервера нет IPv6-адреса.
 			\n\nPublic IPv6 address:" \
 			"${DEFAULT_PUBLIC_IPV6:-}" \
 			PUBLIC_IPV6

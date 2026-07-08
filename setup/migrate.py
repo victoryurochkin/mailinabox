@@ -89,7 +89,7 @@ def migration_7(env):
 				if c.rowcount != 1: raise ValueError("Alias not found.")
 				print("Updated alias", email, "to", newemail)
 		except Exception as e:
-			print("Error updating IDNA alias", email, e)
+			print("Ошибка обновления IDNA-алиаса", email, e)
 
 	# Save.
 	conn.commit()
@@ -241,13 +241,13 @@ def run_migrations():
 			break
 
 		print()
-		print("Running migration to Mail-in-a-Box #%d..." % next_ver)
+		print("Выполняется миграция Mail-in-a-Box #%d..." % next_ver)
 
 		try:
 			migration_func(env)
 		except Exception as e:
 			print()
-			print("Error running the migration script:")
+			print("Ошибка выполнения скрипта миграции:")
 			print()
 			print(e)
 			print()
