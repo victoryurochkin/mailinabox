@@ -115,29 +115,29 @@
 <h4 style="margin-bottom: 0">Команды</h4>
 
 <table class="table" style="margin-top: .5em">
-<thead><th scope="col"> Verb</th> <th scope="col"> Action</th><th scope="col"> </th></thead>
-<tr><td>GET</td><td><i>(none)</i></td> <td>Returns a list of existing mail users. Adding <code>?format=json</code> to the URL will give JSON-encoded results.</td></tr>
+<thead><th scope="col"> Метод</th> <th scope="col"> Действие</th><th scope="col"> </th></thead>
+<tr><td>GET</td><td><i>(нет)</i></td> <td>Возвращает список существующих почтовых пользователей. Добавление <code>?format=json</code> к URL вернёт результат в JSON.</td></tr>
 <tr>
     <td>POST</td>
     <td>/add</td>
-    <td>Adds a new mail user. Required POST-body parameters are <code>email</code> and <code>password</code>. Optional parameters: <code>privilege=admin</code> and <code>quota</code></td>
+    <td>Добавляет нового почтового пользователя. Обязательные параметры POST-запроса: <code>email</code> и <code>password</code>. Необязательные параметры: <code>privilege=admin</code> и <code>quota</code>.</td>
 </tr>
 <tr>
     <td>POST</td>
     <td>/remove</td>
-    <td>Removes a mail user. Required POST-by parameter is <code>email</code>.</td>
+    <td>Удаляет почтового пользователя. Обязательный параметр POST-запроса: <code>email</code>.</td>
 </tr>
-<tr><td>POST</td><td>/privileges/add</td> <td>Used to make a mail user an admin. Required POST-body parameters are <code>email</code> and <code>privilege=admin</code>.</td></tr>
-<tr><td>POST</td><td>/privileges/remove</td> <td>Used to remove the admin privilege from a mail user. Required POST-body parameter is <code>email</code>.</td></tr>
+<tr><td>POST</td><td>/privileges/add</td> <td>Назначает почтовому пользователю права администратора. Обязательные параметры POST-запроса: <code>email</code> и <code>privilege=admin</code>.</td></tr>
+<tr><td>POST</td><td>/privileges/remove</td> <td>Удаляет административную привилегию у почтового пользователя. Обязательный параметр POST-запроса: <code>email</code>.</td></tr>
 <tr>
     <td>GET</td>
     <td>/quota</td>
-    <td>Get the quota for a mail user. Required POST-body parameters are <code>email</code> and will return JSON result</td>
+    <td>Возвращает квоту почтового пользователя. Обязательный параметр POST-запроса: <code>email</code>. Результат возвращается в JSON.</td>
 </tr>
 <tr>
     <td>POST</td>
     <td>/quota</td>
-    <td>Set the quota for a mail user. Required POST-body parameters are <code>email</code> and <code>quota</code>.</td>
+    <td>Задаёт квоту почтового пользователя. Обязательные параметры POST-запроса: <code>email</code> и <code>quota</code>.</td>
 </tr>
 </table>
 
@@ -255,7 +255,7 @@ function users_set_password(elem) {
 
   show_modal_confirm(
     "Изменить пароль",
-    $("<p>Set a new password for <b>" + email + "</b>?</p> <p><label for='users_set_password_pw' style='display: block; font-weight: normal'>Новый пароль:</label><input type='password' id='users_set_password_pw'></p><p><small>Пароль должен быть не короче восьми символов и не должен содержать пробелы.</small>" + yourpw + "</p>"),
+    $("<p>Задать новый пароль для <b>" + email + "</b>?</p> <p><label for='users_set_password_pw' style='display: block; font-weight: normal'>Новый пароль:</label><input type='password' id='users_set_password_pw'></p><p><small>Пароль должен быть не короче восьми символов и не должен содержать пробелы.</small>" + yourpw + "</p>"),
     "Изменить пароль",
     function() {
       api(
@@ -310,7 +310,7 @@ function users_remove(elem) {
 
   // can't remove yourself
   if (api_credentials != null && email == api_credentials.username) {
-    show_modal_error("Архивировать пользователя", "You cannot archive your own account.");
+    show_modal_error("Архивировать пользователя", "Нельзя архивировать собственный аккаунт.");
     return;
   }
 

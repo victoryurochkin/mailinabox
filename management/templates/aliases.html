@@ -21,7 +21,7 @@
       </div>
       <div id="alias_mode_info" class="text-info small" style="display: none; margin: .5em 0 0 0;">
         <span class="catchall hidden">Catch-All алиас принимает всю почту домена, которая не совпала с другими адресами.</span>
-        <span class="domainalias hidden">A domain alias forwards all otherwise unmatched email from one domain to another domain, preserving the part before the @-sign.</span>
+        <span class="domainalias hidden">Алиас домена пересылает всю иначе не совпавшую почту с одного домена на другой, сохраняя часть адреса до знака @.</span>
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@
                   name="addaliasForwardsToDivToggle"
                   type="radio"
                   onclick="$('#addaliasForwardsToDiv').toggle(true)">
-            I&rsquo;ll enter the mail users that can send mail claiming to be from
+            Я вручную укажу почтовых пользователей, которые могут отправлять почту от имени
             <span class="regularalias">адреса алиаса</span>
             <span class="catchall domainalias">любого адреса в домене алиаса</span>.
           </label>
@@ -140,11 +140,11 @@
 
 <table class="table" style="margin-top: .5em">
 <thead><tr>
-<th scope="col"> Verb</th> <th scope="col"> Action</th><th scope="col"> </th>
+<th scope="col"> Метод</th> <th scope="col"> Действие</th><th scope="col"> </th>
 </tr></thead>
-<tr><td>GET</td><td><i>(none)</i></td> <td>Returns a list of existing mail aliases. Adding <code>?format=json</code> to the URL will give JSON-encoded results.</td></tr>
-<tr><td>POST</td><td>/add</td> <td>Adds a new mail alias. Required POST-body parameters are <code>address</code> and <code>forwards_to</code>.</td></tr>
-<tr><td>POST</td><td>/remove</td> <td>Removes a mail alias. Required POST-body parameter is <code>address</code>.</td></tr>
+<tr><td>GET</td><td><i>(нет)</i></td> <td>Возвращает список существующих почтовых алиасов. Добавление <code>?format=json</code> к URL вернёт результат в JSON.</td></tr>
+<tr><td>POST</td><td>/add</td> <td>Добавляет новый почтовый алиас. Обязательные параметры POST-запроса: <code>address</code> и <code>forwards_to</code>.</td></tr>
+<tr><td>POST</td><td>/remove</td> <td>Удаляет почтовый алиас. Обязательный параметр POST-запроса: <code>address</code>.</td></tr>
 </table>
 
 <h4>Примеры:</h4>
