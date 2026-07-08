@@ -122,7 +122,7 @@ source setup/munin.sh
 # Wait for the management daemon to start...
 until nc -z -w 4 127.0.0.1 10222
 do
-	echo "Waiting for the Mail-in-a-Box management daemon to start..."
+	echo "Ожидание запуска службы управления Mail-in-a-Box..."
 	sleep 2
 done
 
@@ -145,9 +145,9 @@ source setup/firstuser.sh
 if [ ! -d "$STORAGE_ROOT/ssl/lets_encrypt/accounts/acme-v02.api.letsencrypt.org/" ]; then
 echo
 echo "-----------------------------------------------"
-echo "Mail-in-a-Box uses Let's Encrypt to provision free SSL/TLS certificates"
-echo "to enable HTTPS connections to your box. We're automatically"
-echo "agreeing you to their subscriber agreement. See https://letsencrypt.org."
+echo "Mail-in-a-Box использует Let's Encrypt для выпуска бесплатных SSL/TLS-сертификатов"
+echo "для включения HTTPS-подключений к вашему серверу. Установка автоматически"
+echo "принимает пользовательское соглашение Let's Encrypt. Подробнее: https://letsencrypt.org."
 echo
 certbot register --register-unsafely-without-email --agree-tos --config-dir "$STORAGE_ROOT/ssl/lets_encrypt"
 fi
@@ -156,27 +156,27 @@ fi
 echo
 echo "-----------------------------------------------"
 echo
-echo "Your Mail-in-a-Box is running."
+echo "Ваш Mail-in-a-Box запущен."
 echo
-echo "Please log in to the control panel for further instructions at:"
+echo "Войдите в панель управления для дальнейших инструкций:"
 echo
 if management/status_checks.py --check-primary-hostname; then
 	# Show the nice URL if it appears to be resolving and has a valid certificate.
 	echo "https://$PRIMARY_HOSTNAME/admin"
 	echo
-	echo "If you have a DNS problem put the box's IP address in the URL"
-	echo "(https://$PUBLIC_IP/admin) but then check the TLS fingerprint:"
+	echo "Если есть проблема с DNS, используйте IP-адрес сервера в URL"
+	echo "(https://$PUBLIC_IP/admin), но обязательно проверьте TLS-отпечаток:"
 	openssl x509 -in "$STORAGE_ROOT/ssl/ssl_certificate.pem" -noout -fingerprint -sha256\
         	| sed "s/SHA256 Fingerprint=//i"
 else
 	echo "https://$PUBLIC_IP/admin"
 	echo
-	echo "You will be alerted that the website has an invalid certificate. Check that"
-	echo "the certificate fingerprint matches:"
+	echo "Браузер предупредит о недействительном сертификате. Проверьте, что"
+	echo "отпечаток сертификата совпадает:"
 	echo
 	openssl x509 -in "$STORAGE_ROOT/ssl/ssl_certificate.pem" -noout -fingerprint -sha256\
         	| sed "s/SHA256 Fingerprint=//i"
 	echo
-	echo "Then you can confirm the security exception and continue."
+	echo "После этого можно подтвердить исключение безопасности и продолжить."
 	echo
 fi

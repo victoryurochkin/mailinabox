@@ -1,7 +1,7 @@
 #!/bin/bash
 # Are we running as root?
 if [[ $EUID -ne 0 ]]; then
-	echo "This script must be run as root. Please re-run like this:"
+	echo "Этот скрипт нужно запускать от root. Повторите запуск так:"
 	echo
 	echo "sudo $0"
 	echo
@@ -13,11 +13,11 @@ fi
 # namespace to avoid polluting our variables.
 source <(cat /etc/os-release | sed s/^/OS_RELEASE_/)
 if [ "${OS_RELEASE_ID:-}" != "ubuntu" ] || [ "${OS_RELEASE_VERSION_ID:-}" != "22.04" ]; then
-	echo "Mail-in-a-Box only supports being installed on Ubuntu 22.04, sorry. You are running:"
+	echo "Mail-in-a-Box поддерживает установку только на Ubuntu 22.04. Сейчас используется:"
 	echo
-	echo "${OS_RELEASE_ID:-"Unknown linux distribution"} ${OS_RELEASE_VERSION_ID:-}"
+	echo "${OS_RELEASE_ID:-"Неизвестный дистрибутив Linux"} ${OS_RELEASE_VERSION_ID:-}"
 	echo
-	echo "We can't write scripts that run on every possible setup, sorry."
+	echo "Невозможно поддержать все варианты окружений, поэтому установка остановлена."
 	exit 1
 fi
 
@@ -33,27 +33,27 @@ TOTAL_PHYSICAL_MEM=$(head -n 1 /proc/meminfo | awk '{print $2}')
 if [ "$TOTAL_PHYSICAL_MEM" -lt 490000 ]; then
 if [ ! -d /vagrant ]; then
 	TOTAL_PHYSICAL_MEM=$(( TOTAL_PHYSICAL_MEM * 1024 / 1000 / 1000 ))
-	echo "Your Mail-in-a-Box needs more memory (RAM) to function properly."
-	echo "Please provision a machine with at least 512 MB, 1 GB recommended."
-	echo "This machine has $TOTAL_PHYSICAL_MEM MB memory."
+	echo "Для корректной работы Mail-in-a-Box требуется больше оперативной памяти."
+	echo "Выделите сервер минимум с 512 МБ ОЗУ, рекомендуется 1 ГБ или больше."
+	echo "На этом сервере обнаружено $TOTAL_PHYSICAL_MEM МБ ОЗУ."
 	exit
 fi
 fi
 if [ "$TOTAL_PHYSICAL_MEM" -lt 750000 ]; then
-	echo "WARNING: Your Mail-in-a-Box has less than 768 MB of memory."
-	echo "         It might run unreliably when under heavy load."
+	echo "ПРЕДУПРЕЖДЕНИЕ: на сервере Mail-in-a-Box меньше 768 МБ ОЗУ."
+	echo "         При высокой нагрузке система может работать нестабильно."
 fi
 
 # Check that tempfs is mounted with exec
 MOUNTED_TMP_AS_NO_EXEC=$(grep "/tmp.*noexec" /proc/mounts || /bin/true)
 if [ -n "$MOUNTED_TMP_AS_NO_EXEC" ]; then
-	echo "Mail-in-a-Box has to have exec rights on /tmp, please mount /tmp with exec"
+	echo "Для Mail-in-a-Box каталог /tmp должен быть смонтирован с правом exec. Перемонтируйте /tmp с exec."
 	exit
 fi
 
 # Check that no .wgetrc exists
 if [ -e ~/.wgetrc ]; then
-	echo "Mail-in-a-Box expects no overrides to wget defaults, ~/.wgetrc exists"
+	echo "Mail-in-a-Box ожидает стандартные настройки wget, но найден файл ~/.wgetrc."
 	exit
 fi
 
@@ -62,9 +62,9 @@ fi
 ARCHITECTURE=$(uname -m)
 if [ "$ARCHITECTURE" != "x86_64" ] && [ "$ARCHITECTURE" != "i686" ]; then
 	echo
-	echo "WARNING:"
-	echo "Mail-in-a-Box has only been tested on x86_64 and i686 platform"
-	echo "architectures. Your architecture, $ARCHITECTURE, may not work."
-	echo "You are on your own."
+	echo "ПРЕДУПРЕЖДЕНИЕ:"
+	echo "Mail-in-a-Box тестировался только на платформах x86_64 и i686."
+	echo "Архитектура $ARCHITECTURE может не поддерживаться."
+	echo "Дальнейший запуск выполняется на ваш риск."
 	echo
 fi

@@ -8,7 +8,7 @@ if [ -z "$(management/cli.py user)" ]; then
 	if [ -z "${EMAIL_ADDR:-}" ]; then
 		# In an interactive shell, ask the user for an email address.
 		if [ -z "${NONINTERACTIVE:-}" ]; then
-			input_box "Mail Account" \
+			input_box "Почтовый аккаунт" \
 				"Let's create your first mail account.
 				\n\nWhat email address do you want?" \
 				"me@$(get_default_hostname)" \
@@ -20,7 +20,7 @@ if [ -z "$(management/cli.py user)" ]; then
 			fi
 			while ! management/mailconfig.py validate-email "$EMAIL_ADDR"
 			do
-				input_box "Mail Account" \
+				input_box "Почтовый аккаунт" \
 					"That's not a valid email address.
 					\n\nWhat email address do you want?" \
 					"$EMAIL_ADDR" \
@@ -38,13 +38,13 @@ if [ -z "$(management/cli.py user)" ]; then
 			EMAIL_ADDR=me@$PRIMARY_HOSTNAME
 			EMAIL_PW=12345678
 			echo
-			echo "Creating a new administrative mail account for $EMAIL_ADDR with password $EMAIL_PW."
+			echo "Создание нового административного почтового аккаунта $EMAIL_ADDR с паролем $EMAIL_PW."
 			echo
 		fi
 	else
 		echo
-		echo "Okay. I'm about to set up $EMAIL_ADDR for you. This account will also"
-		echo "have access to the box's control panel."
+		echo "Хорошо. Сейчас будет настроен аккаунт $EMAIL_ADDR. Этот аккаунт также"
+		echo "получит доступ к панели управления сервера."
 	fi
 
 	# Create the user's mail account. This will ask for a password if none was given above.

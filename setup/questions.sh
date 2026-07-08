@@ -8,7 +8,7 @@ if [ -z "${NONINTERACTIVE:-}" ]; then
 	#
 	# Also install dependencies needed to validate the email address.
 	if [ ! -f /usr/bin/dialog ] || [ ! -f /usr/bin/python3 ] || [ ! -f /usr/bin/pip3 ]; then
-		echo "Installing packages needed for setup..."
+		echo "Установка пакетов, необходимых для настройки..."
 		apt-get -q -q update
 		apt_get_quiet install dialog python3 python3-pip  || exit 1
 	fi
@@ -18,7 +18,7 @@ if [ -z "${NONINTERACTIVE:-}" ]; then
 	# so we install the python package globally.
 	hide_output pip3 install "email_validator>=1.0.0" || exit 1
 
-	message_box "Mail-in-a-Box Installation" \
+	message_box "Установка Mail-in-a-Box" \
 		"Hello and thanks for deploying a Mail-in-a-Box!
 		\n\nI'm going to ask you a few questions.
 		\n\nTo change your answers later, just run 'sudo mailinabox' from the command line.
@@ -36,7 +36,7 @@ if [ -z "${PRIMARY_HOSTNAME:-}" ]; then
 
 		# This is the first run. Ask the user for his email address so we can
 		# provide the best default for the box's hostname.
-		input_box "Your Email Address" \
+		input_box "Ваш email-адрес" \
 "What email address are you setting this box up to manage?
 \n\nThe part after the @-sign must be a domain name or subdomain
 that you control. You can add other email addresses to this
@@ -54,7 +54,7 @@ you really want.
 		fi
 		while ! python3 management/mailconfig.py validate-email "$EMAIL_ADDR"
 		do
-			input_box "Your Email Address" \
+			input_box "Ваш email-адрес" \
 				"That's not a valid email address.\n\nWhat email address are you setting this box up to manage?" \
 				"$EMAIL_ADDR" \
 				EMAIL_ADDR
@@ -69,12 +69,12 @@ you really want.
 		DEFAULT_PRIMARY_HOSTNAME=box.$(echo "$EMAIL_ADDR" | sed 's/.*@//')
 	fi
 
-	input_box "Hostname" \
+	input_box "Имя сервера" \
 "This box needs a name, called a 'hostname'. The name will form a part of the box's web address.
 \n\nWe recommend that the name be a subdomain of the domain in your email
 address, so we're suggesting $DEFAULT_PRIMARY_HOSTNAME.
 \n\nYou can change it, but we recommend you don't.
-\n\nHostname:" \
+\n\nИмя сервера:" \
 		"$DEFAULT_PRIMARY_HOSTNAME" \
 		PRIMARY_HOSTNAME
 
@@ -107,7 +107,7 @@ if [ -z "${PUBLIC_IP:-}" ]; then
 	fi
 
 	if [ -z "${PUBLIC_IP:-}" ]; then
-		input_box "Public IP Address" \
+		input_box "Публичный IPv4-адрес" \
 			"Enter the public IP address of this machine, as given to you by your ISP.
 			\n\nPublic IP address:" \
 			"${DEFAULT_PUBLIC_IP:-}" \
@@ -138,7 +138,7 @@ if [ -z "${PUBLIC_IPV6:-}" ]; then
 	fi
 
 	if [[ -z "${PUBLIC_IPV6:-}" && $MATCHED == 0 ]]; then
-		input_box "IPv6 Address (Optional)" \
+		input_box "IPv6-адрес (необязательно)" \
 			"Enter the public IPv6 address of this machine, as given to you by your ISP.
 			\n\nLeave blank if the machine does not have an IPv6 address.
 			\n\nPublic IPv6 address:" \
@@ -163,8 +163,8 @@ if [ -z "${PRIVATE_IPV6:-}" ]; then
 fi
 if [[ -z "$PRIVATE_IP" && -z "$PRIVATE_IPV6" ]]; then
 	echo
-	echo "I could not determine the IP or IPv6 address of the network interface"
-	echo "for connecting to the Internet. Setup must stop."
+	echo "Не удалось определить IP или IPv6-адрес сетевого интерфейса"
+	echo "для подключения к Интернету. Установка будет остановлена."
 	echo
 	hostname -I
 	route
@@ -196,18 +196,18 @@ fi
 
 # Show the configuration, since the user may have not entered it manually.
 echo
-echo "Primary Hostname: $PRIMARY_HOSTNAME"
-echo "Public IP Address: $PUBLIC_IP"
+echo "Primary Имя сервера: $PRIMARY_HOSTNAME"
+echo "Публичный IPv4-адрес: $PUBLIC_IP"
 if [ -n "$PUBLIC_IPV6" ]; then
-	echo "Public IPv6 Address: $PUBLIC_IPV6"
+	echo "Публичный IPv6-адрес: $PUBLIC_IPV6"
 fi
 if [ "$PRIVATE_IP" != "$PUBLIC_IP" ]; then
-	echo "Private IP Address: $PRIVATE_IP"
+	echo "Приватный IPv4-адрес: $PRIVATE_IP"
 fi
 if [ "$PRIVATE_IPV6" != "$PUBLIC_IPV6" ]; then
-	echo "Private IPv6 Address: $PRIVATE_IPV6"
+	echo "Приватный IPv6-адрес: $PRIVATE_IPV6"
 fi
 if [ -f /usr/bin/git ] && [ -d .git ]; then
-	echo "Mail-in-a-Box Version: $(git describe --always)"
+	echo "Версия Mail-in-a-Box: $(git describe --always)"
 fi
 echo

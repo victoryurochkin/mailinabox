@@ -25,7 +25,7 @@ function hide_output {
 	if [ $E != 0 ]; then
 		# Something failed.
 		echo
-		echo "FAILED: $*"
+		echo "ОШИБКА: $*"
 		echo -----------------------------------------
 		cat "$OUTPUT"
 		echo -----------------------------------------
@@ -195,11 +195,11 @@ function wget_verify {
 	hide_output wget -O "$DEST" "$URL"
 	if ! echo "$CHECKSUM" | sha1sum --check --strict > /dev/null; then
 		echo "------------------------------------------------------------"
-		echo "Download of $URL did not match expected checksum."
-		echo "Found:"
+		echo "Контрольная сумма загруженного файла $URL не совпала с ожидаемой."
+		echo "Получено:"
 		sha1sum "$DEST"
 		echo
-		echo "Expected:"
+		echo "Ожидалось:"
 		echo "$CHECKSUM"
 		rm -f "$DEST"
 		exit 1

@@ -29,7 +29,7 @@ if  [ ! -f /usr/bin/openssl ] \
  || [ ! -f "$STORAGE_ROOT/ssl/ssl_private_key.pem" ] \
  || [ ! -f "$STORAGE_ROOT/ssl/ssl_certificate.pem" ] \
  || [ ! -f "$STORAGE_ROOT/ssl/dh2048.pem" ]; then
-	echo "Creating initial SSL certificate and perfect forward secrecy Diffie-Hellman parameters..."
+	echo "Создание первичного SSL-сертификата и параметров Diffie-Hellman для Perfect Forward Secrecy..."
 fi
 
 # Install openssl.

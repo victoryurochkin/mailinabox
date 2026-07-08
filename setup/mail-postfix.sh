@@ -41,7 +41,7 @@ source /etc/mailinabox.conf # load global vars
 #   always will.
 # * `ca-certificates`: A trust store used to squelch postfix warnings about
 #   untrusted opportunistically-encrypted connections.
-echo "Installing Postfix (SMTP server)..."
+echo "Установка Postfix (SMTP-сервер)..."
 apt_install postfix postfix-sqlite postfix-pcre postgrey ca-certificates
 
 # ### Basic Settings

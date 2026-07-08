@@ -8,7 +8,7 @@ source /etc/mailinabox.conf # load global vars
 # Some Ubuntu images start off with Apache. Remove it since we
 # will use nginx. Use autoremove to remove any Apache dependencies.
 if [ -f /usr/sbin/apache2 ]; then
-	echo "Removing apache..."
+	echo "Удаление Apache..."
 	hide_output apt-get -y purge apache2 apache2-*
 	hide_output apt-get -y --purge autoremove
 fi
@@ -17,7 +17,7 @@ fi
 #
 # Turn off nginx's default website.
 
-echo "Installing Nginx (web server)..."
+echo "Установка Nginx (веб-сервер)..."
 
 apt_install nginx php"${PHP_VER}"-cli php"${PHP_VER}"-fpm idn2
 

@@ -19,7 +19,7 @@ source setup/functions.sh # load our functions
 # libmail-dkim-perl is needed to make the spamassassin DKIM module work.
 # For more information see Debian Bug #689414:
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=689414
-echo "Installing SpamAssassin..."
+echo "Установка SpamAssassin..."
 apt_install spampd razor pyzor dovecot-antispam libmail-dkim-perl
 
 # Allow spamassassin to download new rules.

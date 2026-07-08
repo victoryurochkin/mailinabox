@@ -6,7 +6,7 @@ source setup/functions.sh # load our functions
 source /etc/mailinabox.conf # load global vars
 
 # install Munin
-echo "Installing Munin (system monitoring)..."
+echo "Установка Munin (мониторинг системы)..."
 apt_install munin munin-node libcgi-fast-perl
 # libcgi-fast-perl is needed by /usr/lib/munin/cgi/munin-cgi-graph
 

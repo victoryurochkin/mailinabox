@@ -3,7 +3,7 @@
 source setup/functions.sh
 source /etc/mailinabox.conf # load global vars
 
-echo "Installing Mail-in-a-Box system management daemon..."
+echo "Установка системной службы управления Mail-in-a-Box..."
 
 # DEPENDENCIES
 

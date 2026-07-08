@@ -71,7 +71,7 @@ EOF
 # * nsd: The non-recursive nameserver that publishes our DNS records.
 # * ldnsutils: Helper utilities for signing DNSSEC zones.
 # * openssh-client: Provides ssh-keyscan which we use to create SSHFP records.
-echo "Installing nsd (DNS server)..."
+echo "Установка nsd (DNS-сервер)..."
 apt_install nsd ldnsutils openssh-client
 
 # Create DNSSEC signing keys.
@@ -89,7 +89,7 @@ FIRST=1 #NODOC
 for algo in RSASHA256 ECDSAP256SHA256; do
 if [ ! -f "$STORAGE_ROOT/dns/dnssec/$algo.conf" ]; then
 	if [ $FIRST == 1 ]; then
-		echo "Generating DNSSEC signing keys..."
+		echo "Генерация ключей подписи DNSSEC..."
 		FIRST=0 #NODOC
 	fi
 

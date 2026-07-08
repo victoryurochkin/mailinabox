@@ -57,7 +57,7 @@ if
 	[ "$TOTAL_PHYSICAL_MEM" -lt 1900000 ] &&
 	[ "$AVAILABLE_DISK_SPACE" -gt 5242880 ]
 then
-	echo "Adding a swap file to the system..."
+	echo "Добавление swap-файла в систему..."
 
 	# Allocate and activate the swap file. Allocate in 1KB chunks
 	# doing it in one go, could fail on low memory systems
@@ -72,7 +72,7 @@ then
 	if swapon -s | grep -q "\/swapfile"; then
 		echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
 	else
-		echo "ERROR: Swap allocation failed"
+		echo "ОШИБКА: не удалось выделить swap."
 	fi
 fi
 
@@ -98,7 +98,7 @@ fi
 # third-party providers. First ensure add-apt-repository is installed.
 
 if [ ! -f /usr/bin/add-apt-repository ]; then
-	echo "Installing add-apt-repository..."
+	echo "Установка add-apt-repository..."
 	hide_output apt-get update
 	apt_install software-properties-common
 fi
@@ -121,7 +121,7 @@ hide_output add-apt-repository --y ppa:ondrej/php
 # PPAs so we can install those packages later.
 # --allow-releaseinfo-change is added because ppa:ondrej/php changed its Label.
 
-echo "Updating system packages..."
+echo "Обновление системных пакетов..."
 hide_output apt-get update --allow-releaseinfo-change
 apt_get_quiet upgrade
 
@@ -146,7 +146,7 @@ apt_get_quiet autoremove
 # * bc: allows us to do math to compute sane defaults
 # * openssh-client: provides ssh-keygen
 
-echo "Installing system packages..."
+echo "Установка системных пакетов..."
 apt_install python3 python3-dev python3-pip python3-setuptools \
 	netcat-openbsd wget curl git sudo coreutils bc file \
 	pollinate openssh-client unzip \
@@ -186,7 +186,7 @@ else
 	# This is a non-interactive setup so we can't ask the user.
 	# If /etc/timezone is missing, set it to UTC.
 	if [ ! -f /etc/timezone ]; then
-		echo "Setting timezone to UTC."
+		echo "Установка часового пояса UTC."
 		echo "Etc/UTC" > /etc/timezone
 		restart_service rsyslog
 	fi
@@ -237,7 +237,7 @@ fi
 # hardware entropy to get going, by drawing from /dev/random. haveged makes this
 # less likely to stall for very long.
 
-echo "Initializing system random number generator..."
+echo "Инициализация системного генератора случайных чисел..."
 dd if=/dev/random of=/dev/urandom bs=1 count=32 2> /dev/null
 
 # This is supposedly sufficient. But because we're not sure if hardware entropy
@@ -250,7 +250,7 @@ pollinate  -q -r
 
 # We need an ssh key to store backups via rsync, if it doesn't exist create one
 if [ ! -f /root/.ssh/id_rsa_miab ]; then
-	echo 'Creating SSH key for backup…'
+	echo 'Создание SSH-ключа для резервного копирования…'
 	ssh-keygen -t rsa -b 2048 -a 100 -f /root/.ssh/id_rsa_miab -N '' -q
 fi
 
@@ -284,7 +284,7 @@ if [ -z "${DISABLE_FIREWALL:-}" ]; then
 	if [ -n "$SSH_PORT" ]; then
 	    for port in $SSH_PORT; do
 	        if [ "$port" != "22" ]; then
-	            echo "Opening alternate SSH port $port." #NODOC
+	            echo "Открытие альтернативного SSH-порта $port." #NODOC
                 ufw_limit "$port" #NODOC
             fi
         done

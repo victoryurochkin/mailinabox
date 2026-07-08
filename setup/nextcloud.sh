@@ -7,7 +7,7 @@ source /etc/mailinabox.conf # load global vars
 
 # ### Installing Nextcloud
 
-echo "Installing Nextcloud (contacts/calendar)..."
+echo "Установка Nextcloud (контакты/календарь)..."
 
 # Nextcloud core and app (plugin) versions to install.
 # With each version we store a hash to ensure we install what we expect.
@@ -87,7 +87,7 @@ InstallNextcloud() {
 	hash_user_external=${8:-}
 
 	echo
-	echo "Upgrading to Nextcloud version $version"
+	echo "Обновление Nextcloud до версии $version"
 	echo
 
 	# Download and verify
@@ -113,7 +113,7 @@ InstallNextcloud() {
 	tar xf /tmp/contacts.tgz -C /usr/local/lib/owncloud/apps/
 	rm /tmp/contacts.tgz
 	if [ ! -d /usr/local/lib/owncloud/apps/contacts ]; then
-		echo "Contacts app archive did not unpack to /usr/local/lib/owncloud/apps/contacts."
+		echo "Архив приложения Contacts не распаковался в /usr/local/lib/owncloud/apps/contacts."
 		ls -la /usr/local/lib/owncloud/apps/
 		exit 1
 	fi
@@ -126,7 +126,7 @@ InstallNextcloud() {
 	tar xf /tmp/calendar.tgz -C /usr/local/lib/owncloud/apps/
 	rm /tmp/calendar.tgz
 	if [ ! -d /usr/local/lib/owncloud/apps/calendar ]; then
-		echo "Calendar app archive did not unpack to /usr/local/lib/owncloud/apps/calendar."
+		echo "Архив приложения Calendar не распаковался в /usr/local/lib/owncloud/apps/calendar."
 		ls -la /usr/local/lib/owncloud/apps/
 		exit 1
 	fi
@@ -159,12 +159,12 @@ InstallNextcloud() {
 		sudo -u www-data php"$PHP_VER" /usr/local/lib/owncloud/occ upgrade
 		E=$?
 		if [ $E -ne 0 ] && [ $E -ne 3 ]; then
-			echo "Trying ownCloud upgrade again to work around ownCloud upgrade bug..."
+			echo "Повторная попытка обновления ownCloud для обхода ошибки обновления..."
 			sudo -u www-data php"$PHP_VER" /usr/local/lib/owncloud/occ upgrade
 			E=$?
 			if [ $E -ne 0 ] && [ $E -ne 3 ]; then exit 1; fi
 			sudo -u www-data php"$PHP_VER" /usr/local/lib/owncloud/occ maintenance:mode --off
-			echo "...which seemed to work."
+			echo "...похоже, это сработало."
 		fi
 
 		# Add missing indices. NextCloud didn't include this in the normal upgrade because it might take some time.
@@ -201,7 +201,7 @@ if [ ! -d /usr/local/lib/owncloud/ ] || [[ ! ${CURRENT_NEXTCLOUD_VER} =~ ^$nextc
 	BACKUP_DIRECTORY=$STORAGE_ROOT/owncloud-backup/$(date +"%Y-%m-%d-%T")
 	mkdir -p "$BACKUP_DIRECTORY"
 	if [ -d /usr/local/lib/owncloud/ ]; then
-		echo "Upgrading Nextcloud --- backing up existing installation, configuration, and database to directory to $BACKUP_DIRECTORY..."
+		echo "Обновление Nextcloud --- резервное копирование текущей установки, конфигурации и базы данных в каталог $BACKUP_DIRECTORY..."
 		cp -r /usr/local/lib/owncloud "$BACKUP_DIRECTORY/owncloud-install"
 	fi
 	if [ -e "$STORAGE_ROOT/owncloud/owncloud.db" ]; then
@@ -222,13 +222,13 @@ if [ ! -d /usr/local/lib/owncloud/ ] || [[ ! ${CURRENT_NEXTCLOUD_VER} =~ ^$nextc
 		fi
 
 		if [[ ${CURRENT_NEXTCLOUD_VER} =~ ^[89] ]]; then
-			echo "Upgrades from Mail-in-a-Box prior to v0.28 (dated July 30, 2018) with Nextcloud < 13.0.6 (you have ownCloud 8 or 9) are not supported. Upgrade to Mail-in-a-Box version v0.30 first. Setup will continue, but skip the Nextcloud migration."
+			echo "Обновления с Mail-in-a-Box старее v0.28 (30 июля 2018) при Nextcloud < 13.0.6 (у вас ownCloud 8 или 9) не поддерживаются. Сначала обновитесь до Mail-in-a-Box v0.30. Установка продолжится, но миграция Nextcloud будет пропущена."
 			return 0
 		elif [[ ${CURRENT_NEXTCLOUD_VER} =~ ^1[012] ]]; then
-			echo "Upgrades from Mail-in-a-Box prior to v0.28 (dated July 30, 2018) with Nextcloud < 13.0.6 (you have ownCloud 10, 11 or 12) are not supported. Upgrade to Mail-in-a-Box version v0.30 first. Setup will continue, but skip the Nextcloud migration."
+			echo "Обновления с Mail-in-a-Box старее v0.28 (30 июля 2018) при Nextcloud < 13.0.6 (у вас ownCloud 10, 11 или 12) не поддерживаются. Сначала обновитесь до Mail-in-a-Box v0.30. Установка продолжится, но миграция Nextcloud будет пропущена."
 			return 0
 		elif [[ ${CURRENT_NEXTCLOUD_VER} =~ ^1[3456789] ]]; then
-			echo "Upgrades from Mail-in-a-Box prior to v60 with Nextcloud 19 or earlier are not supported. Upgrade to the latest Mail-in-a-Box version supported on your machine first. Setup will continue, but skip the Nextcloud migration."
+			echo "Обновления с Mail-in-a-Box старее v60 при Nextcloud 19 или ниже не поддерживаются. Сначала обновитесь до последней версии Mail-in-a-Box, поддерживаемой на этом сервере. Установка продолжится, но миграция Nextcloud будет пропущена."
 			return 0
 		fi
 
