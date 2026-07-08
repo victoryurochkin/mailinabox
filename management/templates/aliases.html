@@ -20,7 +20,7 @@
         <button type="button" class="btn btn-default" data-mode="domainalias">Алиас домена</button>
       </div>
       <div id="alias_mode_info" class="text-info small" style="display: none; margin: .5em 0 0 0;">
-        <span class="catchall hidden">A catch-all alias captures all otherwise unmatched email to a domain.</span>
+        <span class="catchall hidden">Catch-All алиас принимает всю почту домена, которая не совпала с другими адресами.</span>
         <span class="domainalias hidden">A domain alias forwards all otherwise unmatched email from one domain to another domain, preserving the part before the @-sign.</span>
       </div>
     </div>
@@ -59,9 +59,9 @@
                   type="radio"
                   checked
                   onclick="$('#addaliasForwardsToDiv').toggle(false)">
-            Any mail user listed in the Пересылать на box can send mail claiming to be from
-            <span class="regularalias">the alias address</span>
-            <span class="catchall domainalias">any address on the alias domain</span>.
+            Любой почтовый пользователь из поля «Пересылать на» может отправлять почту от имени
+            <span class="regularalias">адреса алиаса</span>
+            <span class="catchall domainalias">любого адреса в домене алиаса</span>.
           </label>
         </div>
 
@@ -72,8 +72,8 @@
                   type="radio"
                   onclick="$('#addaliasForwardsToDiv').toggle(true)">
             I&rsquo;ll enter the mail users that can send mail claiming to be from
-            <span class="regularalias">the alias address</span>
-            <span class="catchall domainalias">any address on the alias domain</span>.
+            <span class="regularalias">адреса алиаса</span>
+            <span class="catchall domainalias">любого адреса в домене алиаса</span>.
           </label>
         </div>
       </div>
@@ -84,7 +84,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-11">
-      <button id="add-alias-button" type="submit" class="btn btn-primary">Add Алиас</button>
+      <button id="add-alias-button" type="submit" class="btn btn-primary">Добавить алиас</button>
       <button id="alias-cancel" class="btn btn-default hidden" onclick="aliases_reset_form(); return false;">Отмена</button>
     </div>
   </div>
@@ -110,10 +110,10 @@
   <table>
   <tr id="alias-template">
     <td class='actions'>
-        <a href="#" onclick="aliases_edit(this); scroll_top(); return false;" class='edit' title="Edit Алиас">
+        <a href="#" onclick="aliases_edit(this); scroll_top(); return false;" class='edit' title="Редактировать алиас">
           <span class="glyphicon glyphicon-pencil"></span>
         </a>
-        <a href="#" onclick="aliases_remove(this); return false;" class='remove' title="Remove Алиас">
+        <a href="#" onclick="aliases_remove(this); return false;" class='remove' title="Удалить алиас">
           <span class="glyphicon glyphicon-trash"></span>
         </a>
     </td>
@@ -225,7 +225,7 @@ function show_aliases() {
 
 var is_alias_add_update = false;
 function do_add_alias() {
-  var title = (!is_alias_add_update) ? "Add Алиас" : "Update Алиас";
+  var title = (!is_alias_add_update) ? "Добавить алиас" : "Обновить алиас";
   var form_address = $("#addaliasAddress").val();
   var form_forwardsto = $("#addaliasForwardsTo").val();
   var form_senders = ($('#addaliasForwardsToAdvanced').prop('checked') ? $("#addaliasSenders").val() : '');
@@ -260,7 +260,7 @@ function aliases_reset_form() {
   $("#addaliasForwardsTo").val('')
   $("#addaliasSenders").val('')
   $('#alias-cancel').addClass('hidden');
-  $('#add-alias-button').text('Add Алиас');
+  $('#add-alias-button').text('Добавить алиас');
   is_alias_add_update = false;
 }
 
@@ -295,9 +295,9 @@ function aliases_edit(elem) {
 function aliases_remove(elem) {
   var row_address = $(elem).parents('tr').attr('data-address');
   show_modal_confirm(
-    "Remove Алиас",
-    "Remove " + row_address + "?",
-    "Remove",
+    "Удалить алиас",
+    "Удалить " + row_address + "?",
+    "Удалить",
     function() {
       api(
         "/mail/aliases/remove",
@@ -307,7 +307,7 @@ function aliases_remove(elem) {
         },
         function(r) {
           // Responses are multiple lines of pre-formatted text.
-          show_modal_error("Remove Алиас", $("<pre/>").text(r));
+          show_modal_error("Удалить алиас", $("<pre/>").text(r));
           show_aliases();
         });
     });
