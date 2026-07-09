@@ -14,7 +14,7 @@ Mail-in-a-Box
 Рекомендуемая установка fork:
 
 ```bash
-git clone https://github.com/mail-in-a-box/mailinabox
+[git clone https://github.com/mail-in-a-box/mailinabox](https://github.com/victoryurochkin/mailinabox.git)
 cd mailinabox
 sudo setup/start.sh
 ```
