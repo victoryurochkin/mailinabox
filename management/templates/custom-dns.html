@@ -4,23 +4,23 @@
 }
 </style>
 
-<h2>Custom DNS</h2>
+<h2>Пользовательские DNS-записи</h2>
 
 <p class="text-warning">This is an advanced configuration page.</p>
 
-<p>It is possible to set custom DNS records on domains hosted here.</p>
+<p>Для доменов, размещённых на этом сервере, можно задавать пользовательские DNS-записи.</p>
 
-<h3>Set custom DNS records</h3>
+<h3>Настроить пользовательские DNS-записи</h3>
 
-<p>You can set additional DNS records, such as if you have a website running on another server, to add DKIM records for external mail providers, or for various confirmation-of-ownership tests.</p>
+<p>Можно добавить дополнительные DNS-записи: например, для сайта на другом сервере, DKIM-записи внешних почтовых провайдеров или проверок владения доменом.</p>
 
 <form class="form-horizontal" role="form" onsubmit="do_set_custom_dns(); return false;">
   <div class="form-group">
-    <label for="customdnsQname" class="col-sm-1 control-label">Name</label>
+    <label for="customdnsQname" class="col-sm-1 control-label">Имя</label>
     <div class="col-sm-10">
       <table style="max-width: 400px">
       <tr><td>
-        <input type="text" class="form-control" id="customdnsQname" placeholder="subdomain">
+        <input type="text" class="form-control" id="customdnsQname" placeholder="поддомен">
       </td><td style="padding: 0 1em; font-weight: bold;">.</td><td>
         <select id="customdnsZone" class="form-control"> </select>
       </td></tr></table>
@@ -28,23 +28,23 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="customdnsType" class="col-sm-1 control-label">Type</label>
+    <label for="customdnsType" class="col-sm-1 control-label">Тип</label>
     <div class="col-sm-10">
       <select id="customdnsType" class="form-control" style="max-width: 400px" onchange="show_customdns_rtype_hint()">
-        <option value="A" data-hint="Enter an IPv4 address (i.e. a dotted quad, such as 123.456.789.012).  The 'local' alias sets the record to this box's public IPv4 address.">A (IPv4 address)</option>
-        <option value="AAAA" data-hint="Enter an IPv6 address.  The 'local' alias sets the record to this box's public IPv6 address.">AAAA (IPv6 address)</option>
-        <option value="CAA" data-hint="Enter a CA that can issue certificates for this domain in the form of FLAG TAG VALUE. (0 issuewild &quot;letsencrypt.org&quot;)">CAA (Certificate Authority Authorization)</option>
-        <option value="CNAME" data-hint="Enter another domain name followed by a period at the end (e.g. mypage.github.io.).">CNAME (DNS forwarding)</option>
-        <option value="TXT" data-hint="Enter arbitrary text.">TXT (text record)</option>
-        <option value="MX" data-hint="Enter record in the form of PRIORITY DOMAIN., including trailing period (e.g. 20 mx.example.com.).">MX (mail exchanger)</option>
-        <option value="SRV" data-hint="Enter record in the form of PRIORITY WEIGHT PORT TARGET., including trailing period (e.g. 10 10 5060 sip.example.com.).">SRV (service record)</option>
-        <option value="SSHFP" data-hint="Enter record in the form of ALGORITHM TYPE FINGERPRINT.">SSHFP (SSH fingerprint record)</option>
-        <option value="NS" data-hint="Enter a hostname to which this subdomain should be delegated to">NS (DNS subdomain delegation)</option>
+        <option value="A" data-hint="Введите IPv4-адрес, например 123.456.789.012. Алиас 'local' установит запись в публичный IPv4-адрес этого сервера.">A (IPv4-адрес)</option>
+        <option value="AAAA" data-hint="Введите IPv6-адрес. Алиас 'local' установит запись в публичный IPv6-адрес этого сервера.">AAAA (IPv6-адрес)</option>
+        <option value="CAA" data-hint="Введите центр сертификации, которому разрешено выпускать сертификаты для этого домена, в формате FLAG TAG VALUE. Например: 0 issuewild &quot;letsencrypt.org&quot;.">CAA (авторизация центров сертификации)</option>
+        <option value="CNAME" data-hint="Введите другое доменное имя с точкой в конце, например mypage.github.io.">CNAME (DNS-перенаправление)</option>
+        <option value="TXT" data-hint="Введите произвольный текст.">TXT (текстовая запись)</option>
+        <option value="MX" data-hint="Введите запись в формате PRIORITY DOMAIN. с точкой в конце, например 20 mx.example.com.">MX (почтовый обменник)</option>
+        <option value="SRV" data-hint="Введите запись в формате PRIORITY WEIGHT PORT TARGET. с точкой в конце, например 10 10 5060 sip.example.com.">SRV (служебная запись)</option>
+        <option value="SSHFP" data-hint="Введите запись в формате ALGORITHM TYPE FINGERPRINT.">SSHFP (отпечаток SSH)</option>
+        <option value="NS" data-hint="Введите hostname, которому нужно делегировать этот поддомен.">NS (делегирование DNS-поддомена)</option>
       </select>
     </div>
   </div>
   <div class="form-group">
-    <label for="customdnsValue" class="col-sm-1 control-label">Value</label>
+    <label for="customdnsValue" class="col-sm-1 control-label">Значение</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="customdnsValue" placeholder="">
       <div id="customdnsTypeHint" class="text-info" style="margin-top: .5em"></div>
@@ -52,7 +52,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-11">
-      <button type="submit" class="btn btn-primary">Set Record</button>
+      <button type="submit" class="btn btn-primary">Сохранить запись</button>
     </div>
   </div>
 </form>
@@ -68,17 +68,17 @@
     <th scope="col"> Domain Name</th>
     <th scope="col"> Record Type</th>
     <th scope="col"> Value</th>
-    <th scope="col" aria-label="Actions"></th>
+    <th scope="col" aria-label="Действия"></th>
   </tr></thead>
   <tbody>
     <tr><td colspan="4">Loading...</td></tr>
   </tbody>
 </table>
 
-<h3>Using a secondary nameserver</h3>
+<h3>Использование вторичного DNS-сервера</h3>
 
-<p>If your TLD requires you to have two separate nameservers, you can either set up <a href="#external_dns">external DNS</a> and ignore the DNS server on this box entirely, or use the DNS server on this box but add a secondary (aka &ldquo;slave&rdquo;) nameserver.</p>
-<p>If you choose to use a secondary nameserver, you must find a secondary nameserver service provider. Your domain name registrar or virtual cloud provider may provide this service for you. Once you set up the secondary nameserver service, enter the hostname (not the IP address) of <em>their</em> secondary nameserver in the box below.</p>
+<p>Если доменная зона требует два отдельных DNS-сервера, можно либо настроить <a href="#external_dns">внешний DNS</a> и полностью игнорировать DNS-сервер этого Mail-in-a-Box, либо использовать DNS-сервер на этом сервере и добавить вторичный DNS-сервер.</p>
+<p>Если вы используете вторичный DNS-сервер, нужно выбрать провайдера такой услуги. Её может предоставлять регистратор домена или облачный провайдер. После настройки укажите ниже hostname вторичного DNS-сервера провайдера, а не его IP-адрес.</p>
 
 <form class="form-horizontal" role="form" onsubmit="do_set_secondary_dns(); return false;">
   <div class="form-group">
@@ -89,7 +89,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-11">
-      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="submit" class="btn btn-primary">Обновить</button>
     </div>
   </div>
   <div class="form-group">
@@ -99,28 +99,28 @@
         To enable zone transfers to additional servers without listing them as secondary nameservers, prefix a hostname, IP address, or subnet with <code>xfr:</code>, e.g. <code>xfr:10.20.30.40</code> or <code>xfr:10.0.0.0/8</code>.
       </p>
       <p id="secondarydns-clear-instructions" style="display: none" class="small">
-        Clear the input field above and click Update to use this machine itself as secondary DNS, which is the default/normal setup.
+        Очистите поле выше и нажмите «Обновить», чтобы использовать сам этот сервер как вторичный DNS. Это стандартная настройка по умолчанию.
       </p>
     </div>
   </div>
 </form>
 
 
-<h3>Custom DNS API</h3>
+<h3>API пользовательских DNS-записей</h3>
 
-<p>Use your box&rsquo;s DNS API to set custom DNS records on domains hosted here. For instance, you can create your own dynamic DNS service.</p>
+<p>Используйте DNS API этого сервера для настройки пользовательских DNS-записей доменов, размещённых здесь. Например, так можно создать собственный сервис динамического DNS.</p>
 
-<p>Usage:</p>
+<p>Использование:</p>
 
 <pre>curl -X <b>VERB</b> [-d "<b>value</b>"] --user {email}:{password} https://{{hostname}}/admin/dns/custom[/<b>qname</b>[/<b>rtype</b>]]</pre>
 
-<p>(Brackets denote an optional argument.)</p>
+<p>Квадратные скобки обозначают необязательный аргумент.</p>
 
-<h4>Verbs</h4>
+<h4>Команды</h4>
 
 <table class="table">
 <thead><tr
-<th scope="col"> Verb</th> <th scope="col"> Usage</th>
+<th scope="col"> Метод</th> <th scope="col"> Использование</th>
 </tr></thead>
 <tr><td>GET</td> <td>Returns matching custom DNS records as a JSON array of objects. Each object has the keys <code>qname</code>, <code>rtype</code>, and <code>value</code>. The optional <code>qname</code> and <code>rtype</code> parameters in the request URL filter the records returned in the response. The request body (<code>-d "..."</code>) must be omitted.</td></tr>
 <tr><td>PUT</td> <td>Sets a custom DNS record replacing any existing records with the same <code>qname</code> and <code>rtype</code>. Use PUT (instead of POST) when you only have one value for a <code>qname</code> and <code>rtype</code>, such as typical <code>A</code> records (without round-robin).</td></tr>
@@ -128,7 +128,7 @@
 <tr><td>DELETE</td> <td>Deletes custom DNS records. If the request body (<code>-d "..."</code>) is empty or omitted, deletes all records matching the <code>qname</code> and <code>rtype</code>. If the request body is present, deletes only the record matching the <code>qname</code>, <code>rtype</code> and value.</td></tr>
 </table>
 
-<h4>Parameters</h4>
+<h4>Параметры</h4>
 
 <table class="table">
 <thead><tr>
@@ -141,11 +141,11 @@
 <tr><td>value</td> <td>For PUT, POST, and DELETE, the record&rsquo;s value. If the <code>rtype</code> is <code>A</code> or <code>AAAA</code> and <code>value</code> is empty or omitted, the IPv4 or IPv6 address of the remote host is used (be sure to use the <code>-4</code> or <code>-6</code> options to curl). This is handy for dynamic DNS!</td></tr>
 </table>
 
-<p>Strict <a href="http://tools.ietf.org/html/rfc4408">SPF</a> and <a href="https://datatracker.ietf.org/doc/draft-kucherawy-dmarc-base/?include_text=1">DMARC</a> records will be added to all custom domains unless you override them.</p>
+<p>Строгие записи <a href="http://tools.ietf.org/html/rfc4408">SPF</a> и <a href="https://datatracker.ietf.org/doc/draft-kucherawy-dmarc-base/?include_text=1">DMARC</a> будут добавлены ко всем пользовательским доменам, если вы не переопределите их вручную.</p>
 
-<h4>Examples:</h4>
+<h4>Примеры:</h4>
 
-<p>Try these examples. For simplicity the examples omit the <code>--user me@mydomain.com:yourpassword</code> command line argument which you must fill in with your email address and password.</p>
+<p>Попробуйте эти примеры. Для простоты в них не указан аргумент <code>--user me@mydomain.com:yourpassword</code>; его нужно заполнить вашим email-адресом и паролем.</p>
 
 <pre># sets laptop.mydomain.com to point to the IP address of the machine you are executing curl on
 curl -X PUT https://{{hostname}}/admin/dns/custom/laptop.mydomain.com
@@ -253,11 +253,11 @@ function do_set_secondary_dns() {
     },
     function(data) {
       if (data == "") return; // nothing updated
-      show_modal_error("Secondary DNS", $("<pre/>").text(data));
+      show_modal_error("Вторичный DNS", $("<pre/>").text(data));
       $('#secondarydns-clear-instructions').slideDown();
     },
     function(err) {
-      show_modal_error("Secondary DNS", $("<pre/>").text(err));
+      show_modal_error("Вторичный DNS", $("<pre/>").text(err));
     });
 }
 
@@ -278,11 +278,11 @@ function do_set_custom_dns(qname, rtype, value, method) {
     value,
     function(data) {
       if (data == "") return; // nothing updated
-      show_modal_error("Custom DNS", $("<pre/>").text(data));
+      show_modal_error("Пользовательские DNS-записи", $("<pre/>").text(data));
       show_current_custom_dns();
     },
     function(err) {
-      show_modal_error("Custom DNS (Error)", $("<pre/>").text(err));
+      show_modal_error("Пользовательские DNS-записи — ошибка", $("<pre/>").text(err));
     });
 }
 

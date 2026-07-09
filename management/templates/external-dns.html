@@ -26,13 +26,13 @@
 }
 </style>
 
-<h2>External DNS</h2>
+<h2>Внешний DNS</h2>
 
 <p class="text-warning">This is an advanced configuration page.</p>
 
-<p>Although your box is configured to serve its own DNS, it is possible to host your DNS elsewhere &mdash; such as in the DNS control panel provided by your domain name registrar or virtual cloud provider &mdash; by copying the DNS zone information shown in the table below into your external DNS server&rsquo;s control panel.</p>
+<p>Хотя этот сервер настроен для самостоятельного обслуживания DNS, DNS можно разместить в другом месте — например, в панели DNS регистратора домена или облачного провайдера. Для этого скопируйте информацию DNS-зоны из таблицы ниже во внешнюю DNS-панель.</p>
 
-<p>If you do so, you are responsible for keeping your DNS entries up to date! If you previously enabled DNSSEC on your domain name by setting a DS record at your registrar, you will likely have to turn it off before changing nameservers.</p>
+<p>В этом случае вы самостоятельно отвечаете за актуальность DNS-записей. Если ранее для домена был включён DNSSEC через DS-запись у регистратора, скорее всего, его нужно отключить перед сменой nameserver-ов.</p>
 
 
 <p class="alert" role="alert">
@@ -42,19 +42,19 @@
 	You may need to adopt this technique when adding DomainKeys. Use a tool like <code>named-checkzone</code> to validate your zone file.
 </p>
 
-<h3>Download zonefile</h3>
-<p>You can download your zonefiles here or use the table of records below.</p>
+<h3>Скачать zonefile</h3>
+<p>Здесь можно скачать zonefile или использовать таблицу записей ниже.</p>
 <form class="form-inline" role="form" onsubmit="do_download_zonefile(); return false;">
     <div class="form-group">
         <div class="form-group">
-            <label for="downloadZonefile" class="control-label sr-only">Zone</label>
+            <label for="downloadZonefile" class="control-label sr-only">Зона</label>
             <select id="downloadZonefile" class="form-control" style="width: auto"> </select>
         </div>
-        <button type="submit" class="btn btn-primary">Download</button>
+        <button type="submit" class="btn btn-primary">Скачать</button>
     </div>
 </form>
 
-<h3>Records</h3>
+<h3>Записи</h3>
 
 <table id="external_dns_settings" class="table">
 	<thead>
@@ -118,10 +118,10 @@ function do_download_zonefile() {
         "GET",
         {},
         function(data) {
-            show_modal_error("Download Zonefile", $("<pre/>").text(data));
+            show_modal_error("Скачать zonefile", $("<pre/>").text(data));
         },
         function(err) {
-            show_modal_error("Download Zonefile (Error)", $("<pre/>").text(err));
+            show_modal_error("Скачать zonefile — ошибка", $("<pre/>").text(err));
         });
 }
 </script>
