@@ -139,13 +139,13 @@ function show_system_status() {
       }
 
       // Summary counts
-      summary.html("Summary: ");
+      summary.html("Итог: ");
       if (count_by_status['error'] + count_by_status['warning'] == 0) {
-        summary.append($('<span class="summary-ok"/>').text(`All ${count_by_status['ok']} ${ok_symbol} OK`));
+        summary.append($('<span class="summary-ok"/>').text(`Все проверки пройдены: ${count_by_status['ok']} ${ok_symbol}`));
       } else {
-        summary.append($('<span class="summary-ok"/>').text(`${count_by_status['ok']} ${ok_symbol} OK, `));
+        summary.append($('<span class="summary-ok"/>').text(`${count_by_status['ok']} ${ok_symbol} успешно, `));
         summary.append($('<span class="summary-error"/>').text(`${count_by_status['error']} ${error_symbol} ошибок, `));
-        summary.append($('<span class="summary-warning"/>').text(`${count_by_status['warning']} ${warning_symbol} Warning`));
+        summary.append($('<span class="summary-warning"/>').text(`${count_by_status['warning']} ${warning_symbol} предупреждений`));
       }
     })
 }
