@@ -95,7 +95,7 @@
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-11">
       <p class="small">
-        Multiple secondary servers can be separated with commas or spaces (i.e., <code>ns2.hostingcompany.com ns3.hostingcompany.com</code>).
+        Несколько вторичных серверов можно разделять запятыми или пробелами, например <code>ns2.hostingcompany.com ns3.hostingcompany.com</code>.
         Чтобы разрешить передачу зоны дополнительным серверам без указания их как вторичных DNS-серверов, добавьте перед hostname, IP-адресом или подсетью префикс <code>xfr:</code>, например <code>xfr:10.20.30.40</code> или <code>xfr:10.0.0.0/8</code>.
       </p>
       <p id="secondarydns-clear-instructions" style="display: none" class="small">
@@ -124,7 +124,7 @@
 </tr></thead>
 <tr><td>GET</td> <td>Возвращает подходящие пользовательские DNS-записи в виде JSON-массива объектов. Каждый объект содержит ключи <code>qname</code>, <code>rtype</code> и <code>value</code>. Необязательные параметры <code>qname</code> и <code>rtype</code> в URL запроса фильтруют возвращаемые записи. Тело запроса (<code>-d "..."</code>) должно отсутствовать.</td></tr>
 <tr><td>PUT</td> <td>Задаёт пользовательскую DNS-запись, заменяя существующие записи с теми же <code>qname</code> и <code>rtype</code>. Используйте PUT вместо POST, когда для пары <code>qname</code> и <code>rtype</code> должно быть только одно значение, например для обычных записей <code>A</code> без round-robin.</td></tr>
-<tr><td>POST</td> <td>Adds a new custom DNS record. Use POST when you have multiple <code>TXT</code> records or round-robin <code>A</code> records. (PUT would delete previously added records.)</td></tr>
+<tr><td>POST</td> <td>Добавляет новую пользовательскую DNS-запись. Используйте POST, когда нужно несколько записей <code>TXT</code> или round-robin записи <code>A</code>. PUT в таком случае удалил бы ранее добавленные записи.</td></tr>
 <tr><td>DELETE</td> <td>Удаляет пользовательские DNS-записи. Если тело запроса (<code>-d "..."</code>) пустое или отсутствует, будут удалены все записи, совпадающие по <code>qname</code> и <code>rtype</code>. Если тело запроса передано, будет удалена только запись, совпадающая по <code>qname</code>, <code>rtype</code> и значению.</td></tr>
 </table>
 
@@ -132,12 +132,12 @@
 
 <table class="table">
 <thead><tr>
-<th scope="col"> Parameter</th> <th scope="col"> Значение</th>
+<th scope="col"> Параметр</th> <th scope="col"> Значение</th>
 </tr></thead>
-<tr><td>email</td> <td>The email address of any administrative user here.</td></tr>
-<tr><td>password</td> <td>That user&rsquo;s password.</td></tr>
-<tr><td>qname</td> <td>The fully qualified domain name for the record you are trying to set. It must be one of the domain names or a subdomain of one of the domain names hosted on this box. (Add mail users or aliases to add new domains.)</td></tr>
-<tr><td>rtype</td> <td>The resource type. Defaults to <code>A</code> if omitted. Possible values: <code>A</code> (an IPv4 address), <code>AAAA</code> (an IPv6 address), <code>TXT</code> (a text string), <code>CNAME</code> (an alias, which is a fully qualified domain name &mdash; don&rsquo;t forget the final period), <code>MX</code>, <code>SRV</code>, <code>SSHFP</code>, <code>CAA</code> or <code>NS</code>.</td></tr>
+<tr><td>email</td> <td>Email-адрес любого административного пользователя этой системы.</td></tr>
+<tr><td>password</td> <td>Пароль этого пользователя.</td></tr>
+<tr><td>qname</td> <td>Полное доменное имя записи, которую вы настраиваете. Оно должно быть одним из доменных имён или поддоменом одного из доменов, размещённых на этом сервере. Чтобы добавить новые домены, создайте почтовых пользователей или алиасы.</td></tr>
+<tr><td>rtype</td> <td>Тип ресурсной записи. Если параметр не указан, используется <code>A</code>. Возможные значения: <code>A</code> (IPv4-адрес), <code>AAAA</code> (IPv6-адрес), <code>TXT</code> (текстовая строка), <code>CNAME</code> (алиас в виде полного доменного имени; не забудьте точку в конце), <code>MX</code>, <code>SRV</code>, <code>SSHFP</code>, <code>CAA</code> или <code>NS</code>.</td></tr>
 <tr><td>value</td> <td>Для PUT, POST и DELETE — значение записи. Если <code>rtype</code> равен <code>A</code> или <code>AAAA</code>, а <code>value</code> пустой или отсутствует, будет использован IPv4- или IPv6-адрес удалённого хоста. Для curl используйте параметры <code>-4</code> или <code>-6</code>. Это удобно для динамического DNS.</td></tr>
 </table>
 

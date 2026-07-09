@@ -37,8 +37,8 @@
 
 <p class="alert" role="alert">
 	<span class="glyphicon glyphicon-info-sign"></span>
-	You may encounter zone file errors when attempting to create a TXT record with a long string.
-	<a href="https://tools.ietf.org/html/rfc4408#section-3.1.3">RFC 4408</a> states a TXT record is allowed to contain multiple strings, and this technique can be used to construct records that would exceed the 255-byte maximum length.
+	При создании TXT-записи с длинной строкой могут возникнуть ошибки zonefile.
+	<a href="https://tools.ietf.org/html/rfc4408#section-3.1.3">RFC 4408</a> допускает, что TXT-запись может содержать несколько строк. Этот приём можно использовать для записей, превышающих ограничение 255 байт.
 	Этот приём может понадобиться при добавлении DomainKeys. Для проверки zonefile используйте инструмент вроде <code>named-checkzone</code>.
 </p>
 
@@ -82,7 +82,7 @@ function show_external_dns() {
         }
     });
 
-  $('#external_dns_settings tbody').html("<tr><td colspan='2' class='text-muted'>Loading...</td></tr>")
+  $('#external_dns_settings tbody').html("<tr><td colspan='2' class='text-muted'>Загрузка...</td></tr>")
   api(
     "/dns/dump",
     "GET",
