@@ -14,9 +14,8 @@ Mail-in-a-Box
 Рекомендуемая установка fork:
 
 ```bash
-git clone git@github.com:victoryurochkin/mailinabox.git
+git clone https://github.com/mail-in-a-box/mailinabox
 cd mailinabox
-git checkout v76-fnkd-management-ui-russian-localization-final
 sudo setup/start.sh
 ```
 
