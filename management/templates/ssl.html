@@ -138,7 +138,7 @@ function show_csr() {
 
  // Scroll to it and fetch.
  $('#csr_info').slideDown();
- $('#ssl_csr').text('Loading...');
+ $('#ssl_csr').text('Загрузка...');
  api(
     "/ssl/csr/" + $('#ssldomain').val(),
     "POST",
