@@ -40,7 +40,7 @@
     <div class="col-sm-10">
       <textarea class="form-control" rows="3" id="addaliasForwardsTo"></textarea>
       <div style="margin-top: 3px; padding-left: 3px; font-size: 90%">
-        <span class="domainalias text-muted">Enter just the part of an email address starting with the @-sign.</span>
+        <span class="domainalias text-muted">Введите только часть email-адреса, начиная со знака @.</span>
         <span class="text-danger">Пересылайте почту только на адреса, обслуживаемые этим Mail-in-a-Box. Почта, пересылаемая алиасами на другие домены, может быть отклонена или отфильтрована получателем. Чтобы пересылать почту на другие домены, создайте почтового пользователя, войдите в webmail от его имени и настройте правило фильтрации для пересылки.</span>
       </div>
     </div>
@@ -202,19 +202,19 @@ function show_aliases() {
       if ($(this).attr('data-mode') == "regular") {
         $('#addaliasAddress').attr('type', 'email');
         $('#addaliasAddress').attr('placeholder', 'you@yourdomain.com (входящий email-адрес)');
-        $('#addaliasForwardsTo').attr('placeholder', 'one address per line or separated by commas');
+        $('#addaliasForwardsTo').attr('placeholder', 'один адрес на строку или через запятую');
         $('#alias_mode_info').slideUp();
         $('#addalias-form .regularalias').removeClass('hidden');
       } else if ($(this).attr('data-mode') == "catchall") {
         $('#addaliasAddress').attr('type', 'text');
         $('#addaliasAddress').attr('placeholder', '@yourdomain.com (входящий catch-all домен)');
-        $('#addaliasForwardsTo').attr('placeholder', 'one address per line or separated by commas');
+        $('#addaliasForwardsTo').attr('placeholder', 'один адрес на строку или через запятую');
         $('#alias_mode_info').slideDown();
         $('#addalias-form .catchall').removeClass('hidden');
       } else if ($(this).attr('data-mode') == "domainalias") {
         $('#addaliasAddress').attr('type', 'text');
         $('#addaliasAddress').attr('placeholder', '@yourdomain.com (входящий catch-all домен)');
-        $('#addaliasForwardsTo').attr('placeholder', '@otherdomain.com (forward to other domain)');
+        $('#addaliasForwardsTo').attr('placeholder', '@otherdomain.com (домен назначения пересылки)');
         $('#alias_mode_info').slideDown();
         $('#addalias-form .domainalias').removeClass('hidden');
       }

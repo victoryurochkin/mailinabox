@@ -67,10 +67,10 @@
   <p>После этого поставщик выдаст TLS/SSL-сертификат. Также он может выдать промежуточную цепочку сертификатов. Вставьте каждый блок отдельно в поля ниже:</p>
 
   <p style="margin-bottom: .5em">TLS/SSL-сертификат:</p>
-  <p><textarea id="ssl_paste_cert" class="form-control" style="max-width: 40em; height: 8em" placeholder="-----BEGIN CERTIFICATE-----&#xA;stuff here&#xA;-----END CERTIFICATE-----"></textarea></p>
+  <p><textarea id="ssl_paste_cert" class="form-control" style="max-width: 40em; height: 8em" placeholder="-----BEGIN CERTIFICATE-----&#xA;содержимое сертификата&#xA;-----END CERTIFICATE-----"></textarea></p>
 
   <p style="margin-bottom: .5em">Промежуточная цепочка TLS/SSL, если предоставлена:</p>
-  <p><textarea id="ssl_paste_chain" class="form-control" style="max-width: 40em; height: 8em" placeholder="-----BEGIN CERTIFICATE-----&#xA;stuff here&#xA;-----END CERTIFICATE-----&#xA;-----BEGIN CERTIFICATE-----&#xA;more stuff here&#xA;-----END CERTIFICATE-----"></textarea></p>
+  <p><textarea id="ssl_paste_chain" class="form-control" style="max-width: 40em; height: 8em" placeholder="-----BEGIN CERTIFICATE-----&#xA;содержимое сертификата&#xA;-----END CERTIFICATE-----&#xA;-----BEGIN CERTIFICATE-----&#xA;содержимое промежуточного сертификата&#xA;-----END CERTIFICATE-----"></textarea></p>
 
   <p>После вставки данных нажмите кнопку установки.</p>
 

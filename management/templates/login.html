@@ -127,20 +127,20 @@ function do_login() {
         // Show why the login failed.
         show_modal_error("Ошибка входа", response.reason)
 
-        // Reset any saved credentials.
+        // Сбрасываем сохранённые учётные данные.
         do_logout();
       }
     } else if (!("api_key" in response)) {
-      // Login succeeded but user might not be authorized!
+      // Вход выполнен, но пользователь может быть не авторизован!
       show_modal_error("Ошибка входа", "Вы не являетесь администратором этой системы.")
 
-      // Reset any saved credentials.
+      // Сбрасываем сохранённые учётные данные.
       do_logout();
 
     } else {
-      // Login succeeded.
+      // Вход выполнен.
 
-      // Save the new credentials.
+      // Сохраняем новые учётные данные.
       api_credentials = { username: response.email,
                           session_key: response.api_key,
                           privileges: response.privileges };

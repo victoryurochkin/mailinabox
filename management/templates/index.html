@@ -126,11 +126,11 @@
             <li class="dropdown if-logged-in-admin">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Почта и пользователи <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#mail-guide">Instructions</a></li>
+                <li><a href="#mail-guide">Инструкция</a></li>
                 <li><a href="#users">Пользователи</a></li>
                 <li><a href="#aliases">Алиасы</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Your Account</li>
+                <li class="dropdown-header">Ваша учётная запись</li>
                 <li><a href="#mfa">Двухфакторная аутентификация</a></li>
               </ul>
             </li>
@@ -138,7 +138,7 @@
             <li><a href="#web" class="if-logged-in-admin">Веб</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="if-logged-in"><a href="#" onclick="do_logout(); return false;" style="color: white">Log out</a></li>
+            <li class="if-logged-in"><a href="#" onclick="do_logout(); return false;" style="color: white">Выйти</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -373,7 +373,7 @@ function api(url, method, data, callback, callback_error, headers) {
     cache: false,
     data: data,
     headers: headers,
-    // the custom DNS api sends raw POST/PUT bodies --- prevent URL-encoding
+    // API пользовательских DNS-записей отправляет сырые тела POST/PUT — не URL-кодируем их
     processData: typeof data != "string",
     mimeType: typeof data == "string" ? "text/plain; charset=ascii" : null,
 
@@ -417,7 +417,7 @@ function do_logout() {
   // Clear the session from the backend.
   api("/logout", "POST");
 
-  // Remove locally stored credentials
+  // Удаляем локально сохранённые учётные данные
   clear_credentials();
 
   // Return to the start.

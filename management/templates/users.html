@@ -196,7 +196,7 @@ function show_users() {
             n.find('.box-size').attr('title', 'Размер почтового ящика неизвестен')
           }
           n.find('.percent').text(user.percent);
-          n.find('.quota').text((user.quota == '0') ? 'unlimited' : user.quota);
+          n.find('.quota').text((user.quota == '0') ? 'без ограничений' : user.quota);
           n2.find('.restore_info tt').text(user.mailbox);
 
           if (user.status == 'inactive') continue;
