@@ -41,7 +41,7 @@
       <textarea class="form-control" rows="3" id="addaliasForwardsTo"></textarea>
       <div style="margin-top: 3px; padding-left: 3px; font-size: 90%">
         <span class="domainalias text-muted">Enter just the part of an email address starting with the @-sign.</span>
-        <span class="text-danger">Only forward mail to addresses handled by this Mail-in-a-Box, since mail forwarded by aliases to other domains may be rejected or filtered by the receiver. To forward mail to other domains, create a mail user and then log into webmail for the user and create a filter rule to forward mail.</span>
+        <span class="text-danger">Пересылайте почту только на адреса, обслуживаемые этим Mail-in-a-Box. Почта, пересылаемая алиасами на другие домены, может быть отклонена или отфильтрована получателем. Чтобы пересылать почту на другие домены, создайте почтового пользователя, войдите в webmail от его имени и настройте правило фильтрации для пересылки.</span>
       </div>
     </div>
   </div>
@@ -154,17 +154,17 @@
 <pre># Gives a JSON-encoded list of all mail aliases
 curl -X GET https://{{hostname}}/admin/mail/aliases?format=json
 
-# Adds a new alias
+# Добавляет новый алиас
 curl -X POST -d "address=new_alias@mydomail.com" -d "forwards_to=my_email@mydomain.com" https://{{hostname}}/admin/mail/aliases/add
 
-# Removes an alias
+# Удаляет алиас
 curl -X POST -d "address=new_alias@mydomail.com" https://{{hostname}}/admin/mail/aliases/remove
 </pre>
 
 
 <script>
 function show_aliases() {
-  $('#alias_table tbody').html("<tr><td colspan='2' class='text-muted'>Loading...</td></tr>")
+  $('#alias_table tbody').html("<tr><td colspan='2' class='text-muted'>Загрузка...</td></tr>")
   api(
     "/mail/aliases",
     "GET",
@@ -201,19 +201,19 @@ function show_aliases() {
       $('#addalias-form .regularalias, #addalias-form .catchall, #addalias-form .domainalias').addClass('hidden');
       if ($(this).attr('data-mode') == "regular") {
         $('#addaliasAddress').attr('type', 'email');
-        $('#addaliasAddress').attr('placeholder', 'you@yourdomain.com (incoming email address)');
+        $('#addaliasAddress').attr('placeholder', 'you@yourdomain.com (входящий email-адрес)');
         $('#addaliasForwardsTo').attr('placeholder', 'one address per line or separated by commas');
         $('#alias_mode_info').slideUp();
         $('#addalias-form .regularalias').removeClass('hidden');
       } else if ($(this).attr('data-mode') == "catchall") {
         $('#addaliasAddress').attr('type', 'text');
-        $('#addaliasAddress').attr('placeholder', '@yourdomain.com (incoming catch-all domain)');
+        $('#addaliasAddress').attr('placeholder', '@yourdomain.com (входящий catch-all домен)');
         $('#addaliasForwardsTo').attr('placeholder', 'one address per line or separated by commas');
         $('#alias_mode_info').slideDown();
         $('#addalias-form .catchall').removeClass('hidden');
       } else if ($(this).attr('data-mode') == "domainalias") {
         $('#addaliasAddress').attr('type', 'text');
-        $('#addaliasAddress').attr('placeholder', '@yourdomain.com (incoming catch-all domain)');
+        $('#addaliasAddress').attr('placeholder', '@yourdomain.com (входящий catch-all домен)');
         $('#addaliasForwardsTo').attr('placeholder', '@otherdomain.com (forward to other domain)');
         $('#alias_mode_info').slideDown();
         $('#addalias-form .domainalias').removeClass('hidden');
@@ -230,7 +230,7 @@ function do_add_alias() {
   var form_forwardsto = $("#addaliasForwardsTo").val();
   var form_senders = ($('#addaliasForwardsToAdvanced').prop('checked') ? $("#addaliasSenders").val() : '');
   if ($('#addaliasForwardsToAdvanced').prop('checked') && !/\S/.exec($("#addaliasSenders").val())) {
-    show_modal_error(title, "You did not enter any permitted senders.");
+    show_modal_error(title, "Вы не указали разрешённых отправителей.");
     return false;
   }
   api(
@@ -287,7 +287,7 @@ function aliases_edit(elem) {
   $('#addaliasForwardsToAdvanced').prop('checked', senders != "");
   $('#addaliasForwardsToNotAdvanced').prop('checked', senders == "");
   $("#addaliasSenders").val(senders);
-  $('#add-alias-button').text('Update');
+  $('#add-alias-button').text('Обновить');
   $('body').animate({ scrollTop: 0 })
   is_alias_add_update = true;
 }

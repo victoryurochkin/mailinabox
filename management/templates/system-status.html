@@ -46,7 +46,7 @@
 
 <div id="system-privacy-setting" style="display: none">
 	<div><a onclick="return enable_privacy(!current_privacy_setting)" href="#"><span>Enable/Disable</span> New-Version Check</a></div>
-	<p style="line-height: 125%"><small>(When enabled, status checks phone-home to check for a new release of Mail-in-a-Box.)</small></p>
+	<p style="line-height: 125%"><small>(Если включено, проверки состояния обращаются к внешнему сервису, чтобы проверить наличие новой версии Mail-in-a-Box.)</small></p>
 </div>
 
 	</div> <!-- /col -->
@@ -70,7 +70,7 @@ function show_system_status() {
   const summary = $('#system-checks-summary');
   summary.html("");
 
-  $('#system-checks tbody').html("<tr><td colspan='2' class='text-muted'>Loading...</td></tr>")
+  $('#system-checks tbody').html("<tr><td colspan='2' class='text-muted'>Загрузка...</td></tr>")
 
   api(
     "/system/privacy",

@@ -45,14 +45,14 @@ sudo management/cli.py user make-admin me@{{hostname}}</pre>
 </div>
 {% endif %}
 
-<p class="subtitle">Log in here for your Mail-in-a-Box control panel.</p>
+<p class="subtitle">Войдите здесь в панель управления Mail-in-a-Box.</p>
 
 <div class="login">
   <form id="loginForm" class="form-horizontal" role="form" onsubmit="do_login(); return false;" method="get">
     <div class="form-group">
-      <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+      <label for="inputEmail3" class="col-sm-3 control-label">Email-адрес</label>
       <div class="col-sm-9">
-        <input name="email" type="email" class="form-control" id="loginEmail" placeholder="Email">
+        <input name="email" type="email" class="form-control" id="loginEmail" placeholder="Email-адрес">
       </div>
     </div>
     <div class="form-group">
@@ -88,14 +88,14 @@ sudo management/cli.py user make-admin me@{{hostname}}</pre>
 <script>
 function do_login() {
   if ($('#loginEmail').val() == "") {
-    show_modal_error("Login Failed", "Enter your email address.", function() {
+    show_modal_error("Ошибка входа", "Введите email-адрес.", function() {
       $('#loginEmail').focus();
     });
     return false;
   }
 
   if ($('#loginPassword').val() == "") {
-    show_modal_error("Login Failed", "Enter your email password.", function() {
+    show_modal_error("Ошибка входа", "Введите пароль от почты.", function() {
         $('#loginPassword').focus();
     });
     return false;
@@ -115,7 +115,7 @@ function do_login() {
       if (response.status === 'missing-totp-token' || (response.status === 'invalid' && response.reason == 'invalid-totp-token')) {
         $('#loginForm').addClass('is-twofactor');
         if (response.reason === "invalid-totp-token") {
-          show_modal_error("Login Failed", "Incorrect two factor authentication token.");
+          show_modal_error("Ошибка входа", "Неверный код двухфакторной аутентификации.");
         } else {
           setTimeout(() => {
               $('#loginOtpInput').focus();
@@ -125,14 +125,14 @@ function do_login() {
         $('#loginForm').removeClass('is-twofactor');
 
         // Show why the login failed.
-        show_modal_error("Login Failed", response.reason)
+        show_modal_error("Ошибка входа", response.reason)
 
         // Reset any saved credentials.
         do_logout();
       }
     } else if (!("api_key" in response)) {
       // Login succeeded but user might not be authorized!
-      show_modal_error("Login Failed", "You are not an administrator on this system.")
+      show_modal_error("Ошибка входа", "Вы не являетесь администратором этой системы.")
 
       // Reset any saved credentials.
       do_logout();

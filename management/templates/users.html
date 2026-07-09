@@ -148,22 +148,22 @@
 <pre># Gives a JSON-encoded list of all mail users
 curl -X GET https://{{hostname}}/admin/mail/users?format=json
 
-# Adds a new email user
+# Добавляет нового почтового пользователя
 curl -X POST -d "email=new_user@mydomail.com" -d "password=s3curE_pa5Sw0rD" https://{{hostname}}/admin/mail/users/add
 
-# Removes a email user
+# Удаляет почтового пользователя
 curl -X POST -d "email=new_user@mydomail.com" https://{{hostname}}/admin/mail/users/remove
 
-# Adds admin privilege to an email user
+# Назначает пользователю права администратора
 curl -X POST -d "email=new_user@mydomail.com" -d "privilege=admin" https://{{hostname}}/admin/mail/users/privileges/add
 
-# Removes admin privilege from an email user
+# Удаляет у пользователя права администратора
 curl -X POST -d "email=new_user@mydomail.com" https://{{hostname}}/admin/mail/users/privileges/remove
 </pre>
 
 <script>
 function show_users() {
-  $('#user_table tbody').html("<tr><td colspan='2' class='text-muted'>Loading...</td></tr>")
+  $('#user_table tbody').html("<tr><td colspan='2' class='text-muted'>Загрузка...</td></tr>")
   api(
     "/mail/users",
     "GET",
@@ -193,7 +193,7 @@ function show_users() {
           n.find('.address').text(user.email);
           n.find('.box-size').text(user.box_size);
           if (user.box_size == '?') {
-            n.find('.box-size').attr('title', 'Mailbox size is unkown')
+            n.find('.box-size').attr('title', 'Размер почтового ящика неизвестен')
           }
           n.find('.percent').text(user.percent);
           n.find('.quota').text((user.quota == '0') ? 'unlimited' : user.quota);
@@ -327,11 +327,11 @@ function users_remove(elem) {
         },
         function(r) {
           // Responses are multiple lines of pre-formatted text.
-          show_modal_error("Remove User", $("<pre/>").text(r));
+          show_modal_error("Архивировать пользователя", $("<pre/>").text(r));
           show_users();
         },
         function(r) {
-          show_modal_error("Remove User", r);
+          show_modal_error("Архивировать пользователя", r);
         });
     });
 }
