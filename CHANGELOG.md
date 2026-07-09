@@ -1,6 +1,20 @@
 CHANGELOG
 =========
 
+Fork changes after upstream v76
+================================
+
+Current fork baseline: `v76-fnkd-management-ui-russian-localization-final`.
+
+* Fixed Nextcloud Contacts/Calendar application installation by pinning compatible release assets.
+* Added Russian localization audit documentation and helper tooling.
+* Localized setup installer messages in `setup/*.sh` and `setup/migrate.py`.
+* Localized control panel templates in `management/templates/*.html`.
+* Polished remaining visible management UI strings and placeholders.
+* Intentionally left backend/API/CLI messages mostly unchanged unless they are directly visible in the UI, to reduce regression risk.
+
+Upstream changelog follows below.
+
 Version 76 (May 24, 2026)
 -------------------------
 

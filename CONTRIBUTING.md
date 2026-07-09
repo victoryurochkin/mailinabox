@@ -1,5 +1,20 @@
 # Contributing
 
+## Правила для fork fnkd.ru
+
+Этот fork сохраняет upstream-архитектуру Mail-in-a-Box и добавляет точечные изменения для русификации и эксплуатации.
+
+Основные правила работы:
+
+* делать маленькие атомарные коммиты;
+* не переводить технические идентификаторы, имена API-полей, пути, systemd units, DNS/TLS/SMTP/IMAP/SPF/DKIM/DMARC термины;
+* не менять backend/API/CLI массово без конкретной видимой проблемы;
+* после изменений запускать `bash -n setup/*.sh` и `python3 -m py_compile setup/migrate.py management/*.py tools/customization/*.py`;
+* после `py_compile` удалять `__pycache__`, если он появился;
+* контрольные релизные точки фиксировать тегами `v76-fnkd-*`.
+
+Upstream-рекомендации ниже сохранены для совместимости.
+
 Mail-in-a-Box is an open source project. Your contributions and pull requests are welcome.
 
 ## Development
