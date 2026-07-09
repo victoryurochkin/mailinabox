@@ -20,6 +20,4 @@ git checkout v76-fnkd-management-ui-russian-localization-final
 sudo setup/start.sh
 ```
 
-Upstream-документация ниже сохранена для совместимости и понимания базового проекта.
-
 ---
