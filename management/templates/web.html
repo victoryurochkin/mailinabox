@@ -23,8 +23,8 @@
 <table id="web_domains_existing" class="table" style="margin-bottom: 1em; width: auto;">
         <thead>
                 <tr>
-                        <th scope="col">Site</th>
-                        <th scope="col">Directory for Files</th>
+                        <th scope="col">Сайт</th>
+                        <th scope="col">Каталог файлов</th>
 			<th scope="col" aria-label="Действия"/>
                 </tr>
         </thead>
@@ -32,7 +32,7 @@
         </tbody>
 </table>
 
-<p>Чтобы добавить домен в эту таблицу, сначала создайте для него фиктивного <a href="#users">почтового пользователя</a> или <a href="#aliases">алиас</a>. Также смотрите <a href="https://mailinabox.email/guide.html#domain-name-configuration">руководство по настройке</a> о добавлении nameserver-записей для нового домена у регистратора, но <i>не</i> glue-записей.</p>
+<p>Чтобы добавить домен в эту таблицу, сначала создайте для него технического <a href="#users">почтового пользователя</a> или <a href="#aliases">алиас</a>. Также смотрите <a href="https://mailinabox.email/guide.html#domain-name-configuration">руководство по настройке</a> о добавлении nameserver-записей для нового домена у регистратора, но <i>не</i> glue-записей.</p>
 
 </ol>
 
@@ -70,7 +70,7 @@ function do_web_update() {
     },
     function(data) {
       if (data == "")
-        data = "Nothing changed.";
+        data = "Ничего не изменилось.";
       else
         data = $("<pre/>").text(data);
       show_modal_error("Обновление веб-настроек", data, function() { show_web() });
